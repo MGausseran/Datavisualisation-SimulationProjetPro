@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-
-</head>
-
-<body>
-<div>
-    <canvas id="myChart"></canvas>
-  </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
-  <script>
-
-    const dataTab1 = {
-      
+{
     "Belgium": {
         "2002": 1012.8, "2003": 1007.8, "2004": 1013.7, "2005": 999.4, "2006": 1022.8, "2007": 1034.4, "2008": 1043.6, "2009": 1067.3, "2010": 1072.0, "2011": 1111.0, "2012": 1073.8
     },
@@ -121,37 +105,3 @@
         "2002": 438.7, "2003": 472.2, "2004": 507.5, "2005": 667.8, "2006": 975.1, "2007": 970.6, "2008": 1012.3, "2009": 1288.1, "2010": 1521.7, "2011": 1652.7, "2012": 1904.5
     }
 }
-
-
-const pays = Object.keys(dataTab1);
-const années = Object.keys(dataTab1[pays[0]]);
-const infractions = Object.values(dataTab1[pays[0]]);
-
-console.log(pays);
-console.log(années);
-console.log(infractions);
-
-
-    const ctx = document.getElementById('myChart');
-  
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: [pays],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-  </script>
-  </body>
-  </html>
