@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let datasets = [];
     
     const rows = table.querySelectorAll('tbody tr');
-    
+
     rows.forEach((row, rowIndex) => {
         const cells = row.querySelectorAll('th, td');
         
@@ -129,4 +129,67 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     });
+});
+
+function creerTableau(labels, values) {
+    const ctx = document.getElementById('myChart3').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '-',
+                data: values,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: '-'
+                },
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Graphique'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Y'
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Créer le canvas dynamiquement et ajouter au DOM
+document.addEventListener("DOMContentLoaded", function() {
+    let dynamicChart = document.createElement('canvas');
+    dynamicChart.id = 'myChart3';
+    dynamicChart.classList.add("myChart3");
+    const firstTitle = document.getElementById("firstHeading");
+    firstTitle.parentNode.insertBefore(dynamicChart, firstTitle);
+
+    //Ici, on charge les données après avoir créé le canvas
+    let dataURL = "https://canvasjs.com/services/data/datapoints.php";
+    fetch(dataURL, {cache: "no-store"})
+        .then(response => response.json())
+        .then(data => {
+            const labels = data.map(point => point[0]);
+            const values = data.map(point => point[1]);
+            creerTableau(labels, values);
+        });
 });
