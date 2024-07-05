@@ -192,16 +192,30 @@ document.addEventListener("DOMContentLoaded", function() {
             const values = data.map(point => point[1]);
             creerTableau(labels, values);
             function updateChart() {
-                $.getJSON("https://canvasjs.com/services/data/datapoints.php?xstart=" + (dataPoints.length + 1) + "&ystart=" + (dataPoints[dataPoints.length - 1].y) + "&length=1&type=json", function(data) {
+                const xstart = dataPoints.length + 1;
+                const ystart = dataPoints.length > 0 ? dataPoints[dataPoints.length - 1].y : 0;
+        
+                $.getJSON(`https://canvasjs.com/services/data/datapoints.php?xstart=${xstart}&ystart=${ystart}&length=1&type=json`, function(data) {
                     $.each(data, function(key, value) {
                         dataPoints.push({
                             x: parseInt(value[0]),
                             y: parseInt(value[1])
                         });
-                   });
-                   chart.render();
-                   setTimeout(function(){updateChart()}, 1000);
+        
+                        // Mise à jour des labels du graphique
+                        chart.data.labels.push(parseInt(value[0]));
+                        chart.data.datasets[0].data.push(parseInt(value[1]));
+                    });
+        
+                    // Rafraîchissement du graphique pour afficher les nouvelles données
+                    chart.update();
                 });
-             }
+        
+                // Appel récursif de la fonction avec un délai de 1000ms (1 seconde)
+                setTimeout(updateChart, 1000);
+            }
+        
+            // Appel initial pour lancer la mise à jour progressive
+            updateChart();
         });
 });
