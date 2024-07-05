@@ -1,6 +1,6 @@
 # Data Visualisation
 
-[https://mgausseran.github.io/Datavis_Exercice/]
+https://mgausseran.github.io/Datavis_Exercice/
 ___
 ### Exercice de consolidation en JavaScript
 - Projet réalisé seul en juin 2024 au cours de ma formation [WebDev à BeCode](https://becode.org/).
