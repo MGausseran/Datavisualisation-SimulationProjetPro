@@ -4,7 +4,7 @@ ___
 - Projet réalisé seul en juin 2024 au cours de ma formation [WebDev à BeCode](https://becode.org/).
 - Objectif : consolider notre apprentissage du JavaScript par le biais d'un exercice, visant à implémenter de la datavisualisation dans un article en ligne. 
 
-Self-evaluation based on the following indicators:
+### Self-evaluation based on the following indicators:
 
 1. handling of the DOM:
  - [x] I was able to find the right selector to do it.
